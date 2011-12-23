@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		810FFF9614A5470A0056F19C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810FFF9514A5470A0056F19C /* UIKit.framework */; };
+		810FFF9814A5470A0056F19C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810FFF9714A5470A0056F19C /* Foundation.framework */; };
+		810FFF9A14A5470A0056F19C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810FFF9914A5470A0056F19C /* CoreGraphics.framework */; };
+		810FFF9C14A5470A0056F19C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 810FFF9B14A5470A0056F19C /* CoreData.framework */; };
+		810FFFA214A5470A0056F19C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 810FFFA014A5470A0056F19C /* InfoPlist.strings */; };
+		810FFFA414A5470A0056F19C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FFFA314A5470A0056F19C /* main.m */; };
+		810FFFA814A5470A0056F19C /* CVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FFFA714A5470A0056F19C /* CVAppDelegate.m */; };
+		810FFFAB14A5470A0056F19C /* Curves.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 810FFFA914A5470A0056F19C /* Curves.xcdatamodeld */; };
+		810FFFAE14A5470A0056F19C /* CVMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FFFAD14A5470A0056F19C /* CVMasterViewController.m */; };
+		810FFFB114A5470A0056F19C /* CVDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FFFB014A5470A0056F19C /* CVDetailViewController.m */; };
+		810FFFB414A5470A0056F19C /* CVMasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 810FFFB214A5470A0056F19C /* CVMasterViewController.xib */; };
+		810FFFB714A5470A0056F19C /* CVDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 810FFFB514A5470A0056F19C /* CVDetailViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		810FFF9114A5470A0056F19C /* Curves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Curves.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		810FFF9514A5470A0056F19C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		810FFF9714A5470A0056F19C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		810FFF9914A5470A0056F19C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		810FFF9B14A5470A0056F19C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		810FFF9F14A5470A0056F19C /* Curves-Info.plist */ = {isa = PBXFileReference; path = "Curves-Info.plist"; sourceTree = "<group>"; };
+		810FFFA114A5470A0056F19C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		810FFFA314A5470A0056F19C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		810FFFA514A5470A0056F19C /* Curves-Prefix.pch */ = {isa = PBXFileReference; path = "Curves-Prefix.pch"; sourceTree = "<group>"; };
+		810FFFA614A5470A0056F19C /* CVAppDelegate.h */ = {isa = PBXFileReference; path = CVAppDelegate.h; sourceTree = "<group>"; };
+		810FFFA714A5470A0056F19C /* CVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVAppDelegate.m; sourceTree = "<group>"; };
+		810FFFAA14A5470A0056F19C /* Curves.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Curves.xcdatamodel; sourceTree = "<group>"; };
+		810FFFAC14A5470A0056F19C /* CVMasterViewController.h */ = {isa = PBXFileReference; path = CVMasterViewController.h; sourceTree = "<group>"; };
+		810FFFAD14A5470A0056F19C /* CVMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVMasterViewController.m; sourceTree = "<group>"; };
+		810FFFAF14A5470A0056F19C /* CVDetailViewController.h */ = {isa = PBXFileReference; path = CVDetailViewController.h; sourceTree = "<group>"; };
+		810FFFB014A5470A0056F19C /* CVDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVDetailViewController.m; sourceTree = "<group>"; };
+		810FFFB314A5470A0056F19C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVMasterViewController.xib; sourceTree = "<group>"; };
+		810FFFB614A5470A0056F19C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CVDetailViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		810FFF8E14A5470A0056F19C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				810FFF9614A5470A0056F19C /* UIKit.framework in Frameworks */,
+				810FFF9814A5470A0056F19C /* Foundation.framework in Frameworks */,
+				810FFF9A14A5470A0056F19C /* CoreGraphics.framework in Frameworks */,
+				810FFF9C14A5470A0056F19C /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		810FFF8614A5470A0056F19C = {
+			isa = PBXGroup;
+			children = (
+				810FFF9D14A5470A0056F19C /* Curves */,
+				810FFF9414A5470A0056F19C /* Frameworks */,
+				810FFF9214A5470A0056F19C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		810FFF9214A5470A0056F19C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				810FFF9114A5470A0056F19C /* Curves.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		810FFF9414A5470A0056F19C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				810FFF9514A5470A0056F19C /* UIKit.framework */,
+				810FFF9714A5470A0056F19C /* Foundation.framework */,
+				810FFF9914A5470A0056F19C /* CoreGraphics.framework */,
+				810FFF9B14A5470A0056F19C /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		810FFF9D14A5470A0056F19C /* Curves */ = {
+			isa = PBXGroup;
+			children = (
+				810FFFA614A5470A0056F19C /* CVAppDelegate.h */,
+				810FFFA714A5470A0056F19C /* CVAppDelegate.m */,
+				810FFFAC14A5470A0056F19C /* CVMasterViewController.h */,
+				810FFFAD14A5470A0056F19C /* CVMasterViewController.m */,
+				810FFFAF14A5470A0056F19C /* CVDetailViewController.h */,
+				810FFFB014A5470A0056F19C /* CVDetailViewController.m */,
+				810FFFB214A5470A0056F19C /* CVMasterViewController.xib */,
+				810FFFB514A5470A0056F19C /* CVDetailViewController.xib */,
+				810FFFA914A5470A0056F19C /* Curves.xcdatamodeld */,
+				810FFF9E14A5470A0056F19C /* Supporting Files */,
+			);
+			path = Curves;
+			sourceTree = "<group>";
+		};
+		810FFF9E14A5470A0056F19C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				810FFF9F14A5470A0056F19C /* Curves-Info.plist */,
+				810FFFA014A5470A0056F19C /* InfoPlist.strings */,
+				810FFFA314A5470A0056F19C /* main.m */,
+				810FFFA514A5470A0056F19C /* Curves-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		810FFF9014A5470A0056F19C /* Curves */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 810FFFBA14A5470A0056F19C /* Build configuration list for PBXNativeTarget "Curves" */;
+			buildPhases = (
+				810FFF8D14A5470A0056F19C /* Sources */,
+				810FFF8E14A5470A0056F19C /* Frameworks */,
+				810FFF8F14A5470A0056F19C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Curves;
+			productName = Curves;
+			productReference = 810FFF9114A5470A0056F19C /* Curves.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		810FFF8814A5470A0056F19C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = OmniVerse;
+			};
+			buildConfigurationList = 810FFF8B14A5470A0056F19C /* Build configuration list for PBXProject "Curves" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 810FFF8614A5470A0056F19C;
+			productRefGroup = 810FFF9214A5470A0056F19C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				810FFF9014A5470A0056F19C /* Curves */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		810FFF8F14A5470A0056F19C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				810FFFA214A5470A0056F19C /* InfoPlist.strings in Resources */,
+				810FFFB414A5470A0056F19C /* CVMasterViewController.xib in Resources */,
+				810FFFB714A5470A0056F19C /* CVDetailViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		810FFF8D14A5470A0056F19C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				810FFFA414A5470A0056F19C /* main.m in Sources */,
+				810FFFA814A5470A0056F19C /* CVAppDelegate.m in Sources */,
+				810FFFAB14A5470A0056F19C /* Curves.xcdatamodeld in Sources */,
+				810FFFAE14A5470A0056F19C /* CVMasterViewController.m in Sources */,
+				810FFFB114A5470A0056F19C /* CVDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		810FFFA014A5470A0056F19C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				810FFFA114A5470A0056F19C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		810FFFB214A5470A0056F19C /* CVMasterViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				810FFFB314A5470A0056F19C /* en */,
+			);
+			name = CVMasterViewController.xib;
+			sourceTree = "<group>";
+		};
+		810FFFB514A5470A0056F19C /* CVDetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				810FFFB614A5470A0056F19C /* en */,
+			);
+			name = CVDetailViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		810FFFB814A5470A0056F19C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		810FFFB914A5470A0056F19C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		810FFFBB14A5470A0056F19C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Curves/Curves-Prefix.pch";
+				INFOPLIST_FILE = "Curves/Curves-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		810FFFBC14A5470A0056F19C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Curves/Curves-Prefix.pch";
+				INFOPLIST_FILE = "Curves/Curves-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		810FFF8B14A5470A0056F19C /* Build configuration list for PBXProject "Curves" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				810FFFB814A5470A0056F19C /* Debug */,
+				810FFFB914A5470A0056F19C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		810FFFBA14A5470A0056F19C /* Build configuration list for PBXNativeTarget "Curves" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				810FFFBB14A5470A0056F19C /* Debug */,
+				810FFFBC14A5470A0056F19C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		810FFFA914A5470A0056F19C /* Curves.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				810FFFAA14A5470A0056F19C /* Curves.xcdatamodel */,
+			);
+			currentVersion = 810FFFAA14A5470A0056F19C /* Curves.xcdatamodel */;
+			path = Curves.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 810FFF8814A5470A0056F19C /* Project object */;
+}
