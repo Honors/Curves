@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CVColorForm : UIViewController
+@interface CVColorForm : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
+    IBOutlet UIPickerView *picky;
+    NSMutableArray *arrayColors;
+    NSString *hexColor;
+}
+
+@property(nonatomic, assign) UIViewController *delegate;
 
 @end

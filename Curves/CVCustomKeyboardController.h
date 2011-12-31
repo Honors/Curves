@@ -10,4 +10,11 @@
 
 @interface CVCustomKeyboardController : UIViewController
 
+@property (atomic, strong) UITextField *textfield;
+
+- (IBAction)keyboardDown;
+- (IBAction)keyPress:(id)sender;
+- (IBAction)backspace;
+- (IBAction)space;
+
 @end

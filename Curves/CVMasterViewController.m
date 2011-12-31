@@ -7,12 +7,14 @@
 //
 
 #import "CVMasterViewController.h"
-
 #import "CVDetailViewController.h"
+#import "CVAddForm.h"
 
 @interface CVMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
+
+NSMutableArray *onFunctions;
 
 @implementation CVMasterViewController
 
@@ -20,11 +22,13 @@
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 
+@synthesize shouldAddEq;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Master", @"Master");
+        self.title = NSLocalizedString(@"Functions", @"Master");
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
@@ -46,8 +50,14 @@
     // Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(displayForm)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];    
+    onFunctions = [[NSMutableArray alloc] initWithCapacity:[sectionInfo numberOfObjects]];
+    for( int i = 0; i < (int)[sectionInfo numberOfObjects]; i++ ) {
+        [onFunctions addObject:@"NO"];  //Set default to NO
+    }
 }
 
 - (void)viewDidUnload
@@ -102,7 +112,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
     [self configureCell:cell atIndexPath:indexPath];
@@ -145,10 +155,49 @@
     return NO;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)pushFunctionAtIndex: (NSIndexPath *)indexPath {
     NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    self.detailViewController.detailItem = selectedObject;    
+    self.detailViewController.currentFunction = [selectedObject valueForKey:@"function"];
+    self.detailViewController.currentxFunction = [selectedObject valueForKey:@"xfunction"];
+    self.detailViewController.isPolar = [selectedObject valueForKey:@"polar"];
+    self.detailViewController.window = [selectedObject valueForKey:@"window"];
+    
+    NSString *window = [selectedObject valueForKey:@"window"];
+    NSArray *parts = [window componentsSeparatedByString:@", "];
+    NSString *xStart = [parts objectAtIndex:0];
+    NSString *xEnd = [parts objectAtIndex:1];
+    NSString *fInput = [NSString stringWithFormat:@"(%@-(%@))", xEnd, xStart];
+    
+    self.detailViewController.functionInput = fInput;
+    
+    [self.detailViewController pushFunction:[selectedObject valueForKey:@"function"] polar:[selectedObject valueForKey:@"polar"] window:[selectedObject valueForKey:@"window"] inColor:[selectedObject valueForKey:@"color"] andXFunction:[selectedObject valueForKey:@"xfunction"]];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    
+    if( indexPath != nil ) {
+        NSString *item = [onFunctions objectAtIndex:[indexPath row]];
+        if( [item isEqualToString:@"NO"] ) {
+            //Toggle on
+            [onFunctions replaceObjectAtIndex:[indexPath row] withObject:@"YES"];
+        } else {
+            //Toggle off
+            [onFunctions replaceObjectAtIndex:[indexPath row] withObject:@"NO"];
+        }
+        [tableView reloadData];      
+        
+        //Clear graph
+        [self.detailViewController clearGraph];
+    }
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];    
+    for( int i = (int)[sectionInfo numberOfObjects]-1; i >= 0; i-- ) {
+        NSString *item = [onFunctions objectAtIndex:i];
+        if( [item isEqualToString:@"YES"] )
+            [self pushFunctionAtIndex:[NSIndexPath indexPathForRow:i inSection:0]];
+    }
+
 }
 
 #pragma mark - Fetched results controller
@@ -255,24 +304,115 @@
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+- (NSString *)hexToColor: (NSString *)hex {
+    if( [hex isEqualToString:@"#ff0000"] )
+        return @"Red";
+    if( [hex isEqualToString:@"#ff7700"] )
+        return @"Orange";
+    if( [hex isEqualToString:@"#ffff00"] )
+        return @"Yellow";
+    if( [hex isEqualToString:@"#00ff00"] )
+        return @"Green";
+    if( [hex isEqualToString:@"#0000ff"] )
+        return @"Blue";
+    if( [hex isEqualToString:@"#7700ff"] )
+        return @"Indigo";
+    if( [hex isEqualToString:@"#ff00ff"] )
+        return @"Violet";
+    return @"Red";
 }
 
-- (void)insertNewObject
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    //Get array of rows
+    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *fText = [[managedObject valueForKey:@"function"] description];
+    if( [[[managedObject valueForKey:@"polar"] description] isEqualToString:@"Polar"] )
+        fText = [fText stringByReplacingOccurrencesOfString:@"x" withString:@"θ"];
+    if( [[[managedObject valueForKey:@"xfunction"] description] isEqualToString:@""] ) {
+        cell.textLabel.text = fText;
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"[%@, %@]", [[managedObject valueForKey:@"xfunction"] description], fText];
+    }
+    cell.detailTextLabel.text = [[[managedObject valueForKey:@"polar"] description] stringByAppendingFormat:@" - %@", [self hexToColor:[[managedObject valueForKey:@"color"] description]]];
+
+    NSString *item = [onFunctions objectAtIndex:[indexPath row]];
+    if( [item isEqualToString:@"NO"] ) {
+        //if its turned off
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        //if its turned on
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;        
+    }
+}
+
+- (void)dismissContinue: (NSDictionary *)values {
+    //Handle all of the input values
+    
+    NSLog(@"dismiss");
+    [self dismissModalViewControllerAnimated:YES];
+    //Will include parameter for values
+    [self insertNewObject: values];
+}
+- (void)dismissStop {
+    NSLog(@"dismiss");
+    [self dismissModalViewControllerAnimated:YES];    
+    //Don't insert Object
+}
+
+- (void)displayForm {
+    CVAddForm *cvaf = [[CVAddForm alloc] initWithNibName:@"CVAddView" bundle:nil];
+    
+    cvaf.delegate = self;
+    cvaf.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    [self presentModalViewController:cvaf animated:YES];
+}
+
+- (void)insertNewObject: (NSDictionary *)input
+{    
     // Create a new instance of the entity managed by the fetched results controller.
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    //Keys:
+    //Polar
+    //Function
+    //Color (#e3e3e3)
+    //Window [NSData]
+    NSString *errString;
     
-    // Save the context.
+    NSLog(@"Input window: %@", [input objectForKey:@"Window"]);
+    
+    NSArray *window = [input valueForKey:@"Window"];
+    NSString *implode = [window componentsJoinedByString:@", "];
+    //NSData *windowData = [NSPropertyListSerialization dataFromPropertyList:window format:NSPropertyListBinaryFormat_v1_0 errorDescription:&errString];
+    
+    //Push all of the values
+    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [newManagedObject setValue:[input valueForKey:@"Polar"] forKey:@"Polar"];
+    [newManagedObject setValue:[input valueForKey:@"Function"] forKey:@"Function"];
+    [newManagedObject setValue:[input valueForKey:@"Color"] forKey:@"Color"];
+    [newManagedObject setValue:implode forKey:@"Window"];
+    [newManagedObject setValue:[input valueForKey:@"xFunction"] forKey:@"xfunction"];
+    [newManagedObject setValue:@"On" forKey:@"On"];
+    
+    if( [@"On" isEqualToString:@"On"] ) {
+        [self.detailViewController pushFunction:[input valueForKey:@"Function"] polar:[input valueForKey:@"Polar"] window:implode inColor:[input valueForKey:@"Color"] andXFunction:[input valueForKey:@"xFunction"]];
+    }
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    NSMutableArray *onFunctionsTemp = [[NSMutableArray alloc] initWithCapacity:[sectionInfo numberOfObjects]+1];
+    [onFunctionsTemp addObject:@"YES"];
+    for( int i = 0; i < (int)[sectionInfo numberOfObjects]; i++ ) {
+        [onFunctionsTemp addObject:[onFunctions objectAtIndex:i]];
+    }    
+    
+    onFunctions = onFunctionsTemp;
+    [self.tableView reloadData];
+    
+    // Save the context.ef
     NSError *error = nil;
     if (![context save:&error]) {
         /*
@@ -286,3 +426,22 @@
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
